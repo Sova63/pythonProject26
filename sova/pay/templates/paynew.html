@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Оплачено</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style4.css">
+</head>
+<body>
+    <header class="header text-white">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center px-3">
+                <div class="d-flex align-items-center">
+                    <a href="{% url 'index' %}"><img src="/static/img/logotyp.jpg" alt="Logo" class="logo me-2" style="margin-left: -50px;"></a>
+                    <div class="col-md-3">
+                        <h1>SOVA</h1>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Площадка для продажи цифровых товаров</h6>
+                    </div>
+                </div>
+                <form class="d-flex col-md-3" role="search">
+                    <input class="form-control me-1" type="search" placeholder="Введите для поиска" aria-label="Search">
+                    <button class="btn btn-light" type="button">Найти</button>
+                </form>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown">
+                        <a class="me-3 text-white text-decoration-none" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            Аккаунт
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" >Личный кабинет</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Выход</a></li>
+                        </ul>
+                        <a href="#" class="me-3 text-white text-decoration-none logo mr-2">Как купить ?</a>
+                    </div>
+                    <div>
+                        <a href="#"><img src="/static/img/cart.png" alt="Корзина" class="logo mr-1"></a>
+                    </div>
+                    <div>{% if request.session.cart %}<span>{{ request.session.cart|length }}</span>{% else %}<span>0</span>{% endif %}</div>
+                    <!-- Отображение ника пользователя, если он аутентифицирован -->
+                    {% if request.session.username %}
+                        <div class="ms-3">
+                            <span class="text-white">Привет, {{ request.session.username }}{{ request.session.user_id }}</span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+<div class="container-fluid mt-6 content-container" style=" background: url('/static/img/fon1.jpg') no-repeat center center/cover;" >
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom: 280px">
+            <p class="list-unstyled">
+              <section class="vh-50 bg-image">
+                <div class="mask d-flex align-items-center h-0 gradient-custom-3">
+                  <div class="container h-100" >
+                    <div class="row d-flex justify-content-center align-items-center h-100" >
+                      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                          <div class="card p-4 shadow" style="border-radius: 15px;background-color: rgb(248, 249, 250);padding: 20px">
+                              <div class="card-body p-3 text-center mb-4"  style="margin-bottom: 50px">
+                                <h2 class="text-center mb-4">Платеж успешно обработан!</h2>
+                                <button class="btn btn-dark-gray" style="background-color: hsl(207, 6%, 32%);color: rgb(247, 248, 249)" onclick="location.href='{% url 'index' %}'">Вернуться на главную</button>
+                                <button class="btn btn-dark-gray" style="background-color: hsl(207, 6%, 32%);color: rgb(247, 248, 249)" onclick="location.href='{% url 'download_page' %}'">Перейти к скачиванию</button>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </p>
+        </div>
+    </div>
+</div>
+    <footer class="footer text-white">
+        <div class="container">
+            <div class="row py-2">
+                <div class="col-md-1">
+                    <img src="/static/img/logotyp.jpg" alt="Логотип" class="logo mr-2"style="margin-left: 10px; margin-top:10px">
+                </div>
+                <div class="col-md-3">
+                    <p>Адрес: 123456, Фэнтези-стрит, Волшебный город, Магия</p>
+                    <p>Телефон: 123-456-789</p>
+                    <p>Email: example@example.com</p>
+                </div>
+                <div class="dropdown col-md-3">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                      Информация
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Для авторов</a></li>
+                        <li><a class="dropdown-item" href="#">Конфиденциальность</a></li>
+                        <li><a class="dropdown-item" href="#">Соглашение</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown col-md-3">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                        Разделы
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Контакты</a></li>
+                        <li><a class="dropdown-item" href="#">Отзывы</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown col-md-2">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                        Статьи
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Новости</a></li>
+                        <li><a class="dropdown-item" href="#">Интересное</a></li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Горизонтальная белая черта -->
+            <hr class="bg-white" style=" margin-top:-10px">
+            <!-- Нижняя часть футера -->
+            <div class="row col-12">
+                <div class="col-md-4">
+                    <a href="#"class="text-white text-decoration-none" style="margin-left: 10%; margin-bottom:5px; margin-top:5px">
+                        Техническая поддержка
+                    </a>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#"><img src="/static/img/ok2.png" alt="Однокласники" class="logo mr-1"style="margin-bottom:10px; margin-top:-10px"></a>
+                    <a href="#"><img src="/static/img/VK1.png" alt="В контакте" class="logo mr-1"style="margin-bottom:10px; margin-top:-10px"></a>
+                    <a href="#"><img src="/static/img/telegram.png" alt="telegram" class="logo mr-1"style="margin-bottom:10px; margin-top:-10px"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+
+    </script>
+</body>
+</html>
+
+</body>
+</html>
