@@ -24,7 +24,7 @@
     width: 250px;
     height: 250px;
     border-top: 150px;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 .card-img-top:hover {
     transform: scale(0.9); /* Увеличиваем изображение на 10% */
@@ -33,5 +33,5 @@
 .card-body {
     background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для текста */
     padding: 10px; /* Добавляем отступы вокруг текста */
-    border-radius: 5px; /* Скругляем углы */
+    border-radius: 15px; /* Скругляем углы */
 }
