@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'regApp',
     'domain',
     'pay',
-    'load'
+    'load',
+    'feedback'
 ]
 
 MIDDLEWARE = [

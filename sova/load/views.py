@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from .models import Order
+from .models import Order,User
 import time
 from django.db.models import Max
 from .forms import ProfileForm,PasswordChangeForm
@@ -7,7 +7,8 @@ from .forms import ProfileForm,PasswordChangeForm
 from django.utils import timezone
 from datetime import timedelta
 from domain.models import User
-
+from feedback.forms import EntryForm
+from feedback.models import Entry
 def download_page(request):
     # Получаем ID текущего пользователя из сессии
     user_id = request.session.get('user_id')
@@ -31,6 +32,30 @@ def download_page(request):
     return render(request, 'download_page.html', {'products': latest_orders})
 
 
+'''def account(request):
+    # Получаем ID текущего пользователя из сессии
+    user_id = request.session.get('user_id')
+    if user_id is None:
+        # Обработка случая, если пользователь не авторизован
+        return render(request, 'download_page.html', {'products': []})
+
+    # Получаем все заказы для текущего пользователя
+    latest_orders = Order.objects.filter(user_id=user_id)
+    user = User.objects.get(user_id=user_id)
+    #print(user.username)
+    return render(request, 'account.html', {'products': latest_orders,"user_info":user})'''
+
+'''def centre(request):
+    entries = Entry.objects.all()
+    if request.method == 'POST':
+        form = EntryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('centre')
+    else:
+        form = EntryForm()
+    return render(request, 'account.html', {'form': form,'entries': entries})'''
+
 def account(request):
     # Получаем ID текущего пользователя из сессии
     user_id = request.session.get('user_id')
@@ -41,8 +66,24 @@ def account(request):
     # Получаем все заказы для текущего пользователя
     latest_orders = Order.objects.filter(user_id=user_id)
     user = User.objects.get(user_id=user_id)
-    print(user.username)
-    return render(request, 'account.html', {'products': latest_orders,"user_info":user})
+
+    # Получаем все отзывы пользователя
+    entries = Entry.objects.filter(diary_id=user_id)
+
+    if request.method == 'POST':
+        form = EntryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('account')
+    else:
+        form = EntryForm()
+
+    return render(request, 'account.html', {
+        'products': latest_orders,
+        'user_info': user,
+        'form': form,
+        'entries': entries
+    })
 
 
 def start_download(request):

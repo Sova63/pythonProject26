@@ -82,6 +82,33 @@
                         </div>
                     </div>
                 </div>
+                <h1 class="text-center"></h1>
+                <div class="col-md-4">
+                    <h3>Добавить отзыв</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                    <div>
+                        {{ form.date.label }}
+                        {{ form.date }}
+                    </div>
+                    <div>
+                        {{ form.text.label }}
+                        {{ form.text }}
+                    </div>
+                    <div style="margin-bottom:25px; margin-top:25px">
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                    </div>
+                    </form>
+                    {% for entry in entries %}
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ entry.date }}</h5>
+                                <p class="card-text">{{ entry.text }}</p>
+                                <a href="{% url 'delete' entry.pk %}" class="btn btn-danger">Удалить</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
                 <div class="col-md-8">
                     <div class="col-md-12 "style="margin-top:20px">
                         <h2 class="text-center">Личный кабинет {{ request.session.username }}</h2>

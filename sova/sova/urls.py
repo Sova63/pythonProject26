@@ -24,5 +24,5 @@ urlpatterns = [
     path('auth/', include('authApp.urls')),
     path('reg/', include('regApp.urls')),
     path('load/', include('load.urls')),
-
+    path('feedback/', include('feedback.urls')),
 ]

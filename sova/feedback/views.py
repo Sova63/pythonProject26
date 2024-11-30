@@ -17,7 +17,7 @@ def centre(request):
             return redirect('centre')
     else:
         form = EntryForm()
-    return render(request, 'anfix.html', {'form': form,'entries': entries})
+    return render(request, 'account.html', {'form': form,'entries': entries})
 
 def anfi(request):
     entries = Entry.objects.all()
