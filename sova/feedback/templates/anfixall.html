@@ -31,7 +31,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             {% if request.session.username  %}
-                            <li><a class="dropdown-item" >Личный кабинет</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account' %}">Личный кабинет</a></li>
                             <li><a class="dropdown-item" href="">Выход</a></li>
                             {% else %}
                             <li><a class="dropdown-item" href="">Вход</a></li>
@@ -65,7 +65,8 @@
                             {% for entry in entries %}
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ entry.date }}</h5>
+                                        <p class="card-text">Имя:{{ entry.user.user.id }}</p>
+                                        <p class="card-title">{{ entry.date }}</p>
                                         <p class="card-text">{{ entry.text }}</p>
                                     </div>
                                 </div>

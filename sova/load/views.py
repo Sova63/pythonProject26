@@ -59,6 +59,7 @@ def download_page(request):
 def account(request):
     # Получаем ID текущего пользователя из сессии
     user_id = request.session.get('user_id')
+    print(user_id)
     if user_id is None:
         # Обработка случая, если пользователь не авторизован
         return render(request, 'download_page.html', {'products': []})
@@ -68,8 +69,8 @@ def account(request):
     user = User.objects.get(user_id=user_id)
 
     # Получаем все отзывы пользователя
-    entries = Entry.objects.filter(diary_id=user_id)
-
+    #entries = Entry.objects.filter(diary_id=user_id)
+    entries = Entry.objects.all()
     if request.method == 'POST':
         form = EntryForm(request.POST)
         if form.is_valid():
@@ -86,7 +87,7 @@ def account(request):
     })
 
 
-def start_download(request):
+def start_download(request): #старт скачивания
     # Имитация процесса скачивания
     for i in range(3, -1, -1):
         time.sleep(1)
@@ -94,7 +95,7 @@ def start_download(request):
 
 
 
-def profile_view(request):
+def profile_view(request):# редактирование личных данных
     user_id = request.session.get('user_id')
     
     user = get_object_or_404(User, user_id=request.session.get('user_id'))
