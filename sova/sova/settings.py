@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'sova.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test_sova2',
+        'NAME': 'test_sova4',
         'USER': 'postgres',
         'PASSWORD': '1',
         'HOST': 'localhost',

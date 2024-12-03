@@ -3,7 +3,7 @@ from .views import *
 
 class User(models.Model):
 	user_id = models.AutoField(primary_key = True)
-	username = models.CharField(max_length=120,unique=True)
+	username = models.CharField(max_length=120)
 	password = models.TextField()
 	user_email = models.CharField(max_length=120)
 

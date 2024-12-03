@@ -69,12 +69,15 @@ def account(request):
     user = User.objects.get(user_id=user_id)
 
     # Получаем все отзывы пользователя
-    #entries = Entry.objects.filter(diary_id=user_id)
-    entries = Entry.objects.all()
+    entries = Entry.objects.filter(user_id=user_id)
+    #entries = Entry.objects.all()
     if request.method == 'POST':
         form = EntryForm(request.POST)
         if form.is_valid():
-            form.save()
+            entry = form.save(commit=False)
+            entry.user_id = request.session.get('user_id')
+            entry.username = request.session.get('username')
+            entry.save()
             return redirect('account')
     else:
         form = EntryForm()
